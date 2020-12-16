@@ -49,6 +49,7 @@
     <UserInput
       v-if="!showUserList"
       :show-emoji="showEmoji"
+      :show-emoji-in-text="showEmojiInText"
       :on-submit="onUserInputSubmit"
       :suggestions="getSuggestions()"
       :show-file="showFile"
@@ -75,6 +76,10 @@ export default {
   },
   props: {
     showEmoji: {
+      type: Boolean,
+      default: false
+    },
+    showEmojiInText: {
       type: Boolean,
       default: false
     },

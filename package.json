@@ -1,9 +1,9 @@
 {
-  "name": "vue-beautiful-chat",
+  "name": "vue-beautiful-chat-emoji-in-text",
   "version": "2.5.0",
   "description": "A simple and beautiful Vue chat component backend agnostic.",
   "main": "./dist/vue-beautiful-chat.umd.min.js",
-  "repository": "https://github.com/mattmezza/vue-beautiful-chat.git",
+  "repository": "https://github.com/Sitronik/vue-beautiful-chat.git",
   "author": "Matteo Merola <mattmezza@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -53,7 +53,7 @@
     "vue-js-chat"
   ],
   "bugs": {
-    "url": "https://github.com/mattmezza/vue-beautiful-chat/issues"
+    "url": "https://github.com/Sitronik/vue-beautiful-chat/issues"
   },
   "husky": {
     "hooks": {

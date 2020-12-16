@@ -20,6 +20,7 @@
       :title="chatWindowTitle"
       :is-open="isOpen"
       :show-emoji="showEmoji"
+      :show-emoji-in-text="showEmojiInText"
       :show-file="showFile"
       :show-confirmation-deletion="showConfirmationDeletion"
       :confirmation-deletion-message="confirmationDeletionMessage"
@@ -90,6 +91,10 @@ export default {
       }
     },
     showEmoji: {
+      type: Boolean,
+      default: false
+    },
+    showEmojiInText: {
       type: Boolean,
       default: false
     },

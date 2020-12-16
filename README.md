@@ -31,12 +31,12 @@ Go to [FAQ](#faq) ⬇️
 ## Installation
 
 ```
-$ yarn add vue-beautiful-chat
+$ yarn add vue-beautiful-chat-emoji-in-text
 ```
 
 ## Example
 ```javascript
-import Chat from 'vue-beautiful-chat'
+import Chat from 'vue-beautiful-chat-emoji-in-text'
 Vue.use(Chat)
 ```
 
@@ -178,6 +178,7 @@ For more detailed examples see the demo folder.
 | *close | Function | The function passed to the component that mutates the above mentioned bool toggle for closing the chat |
 | messageList | [message] | An array of message objects to be rendered as a conversation. |
 | showEmoji | Boolean | A bool indicating whether or not to show the emoji button
+| showEmojiInText | Boolean | A bool indicating whether or not to send emoji directly as a message as opposed to inserting them into the user input
 | showFile | Boolean | A bool indicating whether or not to show the file chooser button
 | showDeletion | Boolean | A bool indicating whether or not to show the edit button for a message
 | showConfirmationDeletion | Boolean | A bool indicating whether or not to show the confirmation text when we remove a message

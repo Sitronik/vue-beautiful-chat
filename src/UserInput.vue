@@ -121,6 +121,10 @@ export default {
       type: Boolean,
       default: () => false
     },
+    showEmojiInText: {
+      type: Boolean,
+      default: () => false
+    },
     suggestions: {
       type: Array,
       default: () => []
@@ -145,7 +149,8 @@ export default {
   data() {
     return {
       file: null,
-      inputActive: false
+      inputActive: false,
+      prevSelectionRange: null
     }
   },
   computed: {
@@ -170,6 +175,23 @@ export default {
     this.$root.$on('focusUserInput', () => {
       if (this.$refs.userInput) {
         this.focusUserInput()
+      }
+    })
+
+    document.addEventListener('selectionchange', () => {
+      const selection = document.getSelection()
+      if (
+        !selection ||
+        !selection.anchorNode ||
+        (selection.anchorNode != this.$refs.userInput &&
+          selection.anchorNode.parentNode != this.$refs.userInput)
+      ) {
+        return
+      }
+      if (selection.rangeCount) {
+        this.prevSelectionRange = selection.getRangeAt(0).cloneRange()
+      } else {
+        this.prevSelectionRange = null
       }
     })
   },
@@ -268,6 +290,13 @@ export default {
       }
     },
     _handleEmojiPicked(emoji) {
+      if (this.showEmojiInText) {
+        this._submitEmoji(emoji)
+      } else {
+        this._addToTextEmoji(emoji)
+      }
+    },
+    _submitEmoji(emoji) {
       this._checkSubmitSuccess(
         this.onSubmit({
           author: 'me',
@@ -275,6 +304,27 @@ export default {
           data: {emoji}
         })
       )
+    },
+    _addToTextEmoji(emoji) {
+      let range = this.prevSelectionRange
+      if (!range) {
+        if (!this.$refs.userInput.firstChild) {
+          this.$refs.userInput.append(document.createTextNode(''))
+        }
+
+        range = document.createRange()
+        range.setStart(this.$refs.userInput.firstChild, this.$refs.userInput.textContent.length)
+        range.collapse(true)
+      }
+      let selection = window.getSelection()
+      selection.removeAllRanges()
+      selection.addRange(range)
+
+      let textNode = document.createTextNode(emoji)
+      range.deleteContents()
+      range.insertNode(textNode)
+      range.collapse(false)
+      this.$refs.userInput.focus()
     },
     _handleFileSubmit(file) {
       this.file = file
