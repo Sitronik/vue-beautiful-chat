@@ -291,9 +291,9 @@ export default {
     },
     _handleEmojiPicked(emoji) {
       if (this.showEmojiInText) {
-        this._submitEmoji(emoji)
-      } else {
         this._addToTextEmoji(emoji)
+      } else {
+        this._submitEmoji(emoji)
       }
     },
     _submitEmoji(emoji) {
